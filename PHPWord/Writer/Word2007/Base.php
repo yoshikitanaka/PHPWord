@@ -511,19 +511,19 @@ class PHPWord_Writer_Word2007_Base extends PHPWord_Writer_Word2007_WriterPart {
         $bRight = (!is_null($brdSz[2])) ? true : false;
         $bBottom = (!is_null($brdSz[3])) ? true : false;
         $borders = ($bTop || $bLeft || $bRight || $bBottom) ? true : false;
+        $gridSpan = $style->getGridSpan();
+        $vMerge = $style->getVMerge();
 
-        $styles = (!is_null($bgColor) || !is_null($valign) || !is_null($textDir) || $borders) ? true : false;
+        $styles = ( !is_null($bgColor) || !is_null($valign) || !is_null($textDir) || $borders || !is_null($gridSpan) || !is_null($vMerge) ) ? true : false;
 
         if($styles) {
 
-            $gridSpan = $style->getGridSpan();
             if(!is_null($gridSpan)) {
                 $objWriter->startElement('w:gridSpan');
                 $objWriter->writeAttribute('w:val', $gridSpan);
                 $objWriter->endElement();
             }
 
-            $vMerge = $style->getVMerge();
             if(!is_null($vMerge)) {
                 $objWriter->startElement('w:vMerge');
                 $objWriter->writeAttribute('w:val', $vMerge);
