@@ -160,7 +160,7 @@ class PHPWord_Section_Table_Cell {
 	 * @return PHPWord_Section_ListItem
 	 */
 	public function addListItem($text, $depth = 0, $styleText = null, $styleList = null) {
-		$text = utf8_encode($text);
+		$text = $text;
 		$listItem = new PHPWord_Section_ListItem($text, $depth, $styleText, $styleList);
 		$this->_elementCollection[] = $listItem;
 		return $listItem;
